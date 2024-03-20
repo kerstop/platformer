@@ -516,10 +516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b940de0955e386a40a6006461602a8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 0.49
+  acceleration: 0.5
   bouncines: 0.8
-  constantFriction: 0.13
-  scalarFriction: 0.1
+  constantFriction: 0.1
+  scalarFriction: 0.05
   jumpHeight: 5
   jumpTime: 0.5
   gravity: 3.3333335
