@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             velocity = Vector3.MoveTowards(velocity, Vector3.zero, speed * scalarFriction + speed * constantFriction * Time.fixedDeltaTime);
         }
 
-        velocity += Vector3.down * gravity * Time.fixedDeltaTime;
+        velocity += gravity * Time.fixedDeltaTime * Vector3.down;
 
         character.Move(velocity);
     }
