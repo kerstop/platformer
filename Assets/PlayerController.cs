@@ -81,6 +81,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 initialVelocity = velocity;
         velocity = Vector3.Reflect(velocity, hit.normal);
-        velocity = Vector3.MoveTowards(velocity, (velocity + initialVelocity) * 0.5f, jumpImpulse);
+        velocity = Vector3.MoveTowards(velocity, (velocity + initialVelocity) * 0.5f, jumpImpulse * bouncines);
     }
 }

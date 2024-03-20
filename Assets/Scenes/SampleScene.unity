@@ -393,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 1107073383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -516,8 +516,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b940de0955e386a40a6006461602a8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
-  gravity: {x: 0, y: -9.8, z: 0}
+  acceleration: 0.49
+  bouncines: 0.8
+  constantFriction: 0.13
+  scalarFriction: 0.1
+  jumpHeight: 5
+  jumpTime: 0.5
+  gravity: 3.3333335
+  jumpImpulse: 0.8333334
 --- !u!114 &1203512583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +558,7 @@ MonoBehaviour:
     m_ActionId: b7e96839-f7f5-4cd0-ad0a-750ca6955746
     m_ActionName: Movement/jump[/DualSenseGamepadHID/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Base
-  m_DefaultActionMap: Movement
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
