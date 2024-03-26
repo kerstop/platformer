@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Transform VirtualCamera;
     [Tooltip("Acceleration in m/s^2.")]
     public float acceleration = 2.0f;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float bouncines = 0.8f;
     [Header("Friction Parameters")]
     [Tooltip("Friction force applied while on ground in m/s^2.")]
@@ -27,7 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController character;
     private Vector3 velocity;
-    private Vector3 inputForce;
+    private Vector2 moveDir;
+
 
     void OnValidate()
     {
@@ -44,7 +46,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        velocity += inputForce;
+        Vector3 forward = Vector3.Scale(transform.position - VirtualCamera.position, new Vector3(1.0f, 0, 1.0f)).normalized;
+        Vector3 right = Vector3.Cross(Vector3.up, forward);
+        Vector3 playerInputForce = ((forward * moveDir.y) + (right * moveDir.x)) * acceleration * Time.fixedDeltaTime;
+        velocity += playerInputForce;
 
         if (character.isGrounded && velocity.y < 0.0f)
         {
@@ -65,8 +70,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue input)
     {
-        Vector2 moveDir = input.Get<Vector2>();
-        inputForce = new Vector3(moveDir.x, 0, moveDir.y) * acceleration * Time.fixedDeltaTime;
+        moveDir = input.Get<Vector2>();
     }
 
     public void OnJump()
