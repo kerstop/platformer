@@ -2,7 +2,7 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Player",
+            "name": "Controls",
             "id": "4612b404-f6ed-4e76-89d0-37815b601f4a",
             "actions": [
                 {
@@ -127,7 +127,7 @@
                     "id": "38d611f9-1165-4023-8f5d-84bf7d0b6364",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=100,y=-100)",
                     "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -138,7 +138,7 @@
                     "id": "7b7e46a2-1bb3-484b-a27f-4730ebe64d0f",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "DeltaTimeScale,ScaleVector2(x=0.1,y=0.1)",
                     "groups": "Keyboard & Mouse",
                     "action": "Look",
                     "isComposite": false,
