@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
 	private Transform virtualCamera;
 	private Vector3 velocity;
 	private Vector2 inputMove;
+	private bool shouldJump = false;
 
 	void OnValidate()
 	{
@@ -52,11 +54,6 @@ public class PlayerController : MonoBehaviour
 		Vector3 playerInputForce = ((forward * inputMove.y) + (Vector3.Cross(Vector3.up, forward) * inputMove.x)) * acceleration * Time.fixedDeltaTime;
 		velocity += playerInputForce;
 
-		if (character.isGrounded && velocity.y < 0.0f)
-		{
-			velocity.y = 0;
-		}
-
 		if (character.isGrounded)
 		{
 			float speed = velocity.magnitude;
@@ -65,6 +62,17 @@ public class PlayerController : MonoBehaviour
 		}
 
 		velocity += gravity * Time.fixedDeltaTime * Vector3.down;
+
+		if (character.isGrounded)
+		{
+			velocity.y = 0;
+		}
+
+		if (character.isGrounded && shouldJump)
+		{
+			velocity += Vector3.up * jumpImpulse;
+			shouldJump = false;
+		}
 
 		character.Move(velocity);
 	}
@@ -76,10 +84,7 @@ public class PlayerController : MonoBehaviour
 
 	public void OnJump()
 	{
-		if (character.isGrounded)
-		{
-			velocity += Vector3.up * jumpImpulse;
-		}
+		shouldJump = true;	
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit)
